@@ -46,7 +46,14 @@ nav.site-nav {
 
 .brand-wrap:hover .emblem {
   transform: scale(1.06);
+  animation-play-state: paused;
   filter: drop-shadow(0 0 18px rgba(229, 46, 46, 0.85));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-wrap .emblem {
+    animation: none;
+  }
 }
 
 @keyframes boxerPulse {
