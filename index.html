@@ -234,11 +234,48 @@
     </section>
 
     <!-- 4. Coach & Free Pass -->
-    <section id="coach" style="min-height: 100vh;">
+    <section id="coach">
       <div class="coach-container">
-        <!-- Coach roster implemented in Task 8 -->
-        <div id="free-pass">
-          <!-- Free pass generator implemented in Task 9 -->
+        <!-- Left: Heroic Coach Column -->
+        <div class="coach-hero-card">
+          <div class="coach-portrait-wrap">
+            <img src="assets/coach.webp" alt="Head Coach Ian Walker" class="coach-portrait" loading="lazy">
+            <div class="coach-portrait-badge">
+              <span class="badge-exp">30+ Years Boxing Experience</span>
+            </div>
+          </div>
+          <div class="coach-credentials">
+            <div class="coach-affiliation">
+              <img src="assets/england-boxing-logo.png" alt="England Boxing" class="coach-affil-logo">
+              <span>England Boxing Registered Coach · Club Reg 10452</span>
+            </div>
+            <h2 class="coach-name">Head Coach Ian Walker</h2>
+            <p class="coach-role">Owner & Head Trainer · South Birmingham ABC</p>
+            <div class="coach-stats-row">
+              <div class="coach-stat-pill">
+                <strong>30+</strong>
+                <span>Years Experience</span>
+              </div>
+              <div class="coach-stat-pill">
+                <strong>South Birmingham</strong>
+                <span>ABC Lead</span>
+              </div>
+              <div class="coach-stat-pill">
+                <strong>100%</strong>
+                <span>Authentic Boxing</span>
+              </div>
+            </div>
+            <p class="coach-bio">
+              England Boxing certified trainer dedicated to real fight science, technical mastery, and discipline for all levels from complete beginners to amateur competitors.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: Booking / Free Pass Column -->
+        <div class="coach-pass-column">
+          <div id="free-pass">
+            <!-- Free pass generator mounted by passView -->
+          </div>
         </div>
       </div>
     </section>

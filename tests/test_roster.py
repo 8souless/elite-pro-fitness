@@ -1,5 +1,21 @@
 from helpers import run_module
 
+def test_coach_portrait_is_prominent_and_visible(page, base_url):
+    page.set_viewport_size({"width": 1280, "height": 800})
+    page.goto(base_url + "/#coach")
+    coach_img = page.locator("#coach .coach-portrait")
+    assert coach_img.is_visible()
+    box = coach_img.bounding_box()
+    assert box["height"] >= 450, f"Coach portrait height ({box['height']}) is too small"
+
+def test_free_pass_form_flanks_coach(page, base_url):
+    page.set_viewport_size({"width": 1280, "height": 800})
+    page.goto(base_url + "/#coach")
+    pass_form = page.locator("#free-pass")
+    assert pass_form.is_visible()
+    header_text = page.locator("#free-pass h2, #free-pass h3").first.text_content()
+    assert "claim" in header_text.lower() or "free" in header_text.lower()
+
 def test_arc_math(page, base_url):
     page.goto(base_url + "/tests/blank.html")
     r = run_module(page, "/js/roster/arc.js", """(() => {
@@ -12,7 +28,7 @@ def test_arc_math(page, base_url):
 def test_vertical_wheel_not_hijacked(page, base_url):
     page.goto(base_url + "/#coach")
     y0 = page.evaluate("scrollY")
-    page.hover("#coach .shelf")
+    page.hover("#coach")
     page.mouse.wheel(0, 600)
     page.wait_for_timeout(400)
     assert page.evaluate("scrollY") > y0
@@ -20,15 +36,5 @@ def test_vertical_wheel_not_hijacked(page, base_url):
 def test_open_coach_reveals_pass(page, base_url):
     page.set_viewport_size({"width": 1440, "height": 900})
     page.goto(base_url + "/#coach")
-    page.wait_for_timeout(600)
-    page.click("#coach .tape.is-active")
-    page.wait_for_timeout(1000)
-    assert "is-open" in page.get_attribute("#coach", "class")
+    page.wait_for_timeout(300)
     assert page.is_visible("#free-pass form")
-
-def test_roster_keyboard(page, base_url):
-    page.goto(base_url + "/#coach")
-    page.focus("#coach .shelf")
-    page.keyboard.press("ArrowRight")
-    page.wait_for_timeout(900)
-    assert page.inner_text("#coach .caption .title") == "Adults (mixed)"

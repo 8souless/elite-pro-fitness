@@ -15,8 +15,12 @@ export const passView = {
 
     root.innerHTML = `
       <div class="pass-form-wrap">
-        <div class="pass-form-title">Claim Your Free Session Pass</div>
-        <div class="pass-form-sub">Experience authentic coaching with zero obligation · England Boxing Affiliated</div>
+        <div class="pass-punch-badge">
+          <span class="badge-dot"></span>
+          <span>Admit One · Free Session Pass</span>
+        </div>
+        <h2 class="pass-form-title">Sign Up to Claim Your Free Pass</h2>
+        <p class="pass-form-sub">Experience authentic England Boxing training at South Birmingham ABC with 1 complimentary session. Zero obligation.</p>
         <form class="pass-form" novalidate>
           <div class="form-group">
             <label for="pass-name">Full Name</label>
@@ -29,6 +33,11 @@ export const passView = {
             <span class="form-error" id="email-error"></span>
           </div>
           <div class="form-group">
+            <label for="pass-phone">Phone Number (Optional)</label>
+            <input type="tel" id="pass-phone" name="phone" placeholder="e.g. 07534 444 063">
+            <span class="form-error" id="phone-error"></span>
+          </div>
+          <div class="form-group">
             <label for="pass-class">Select Training Class</label>
             <select id="pass-class" name="classKey">
               <option value="adults">Adult Boxing & Fitness</option>
@@ -38,7 +47,14 @@ export const passView = {
             </select>
             <span class="form-error" id="class-error"></span>
           </div>
-          <button type="submit" class="btn-primary">Generate Free Session Pass</button>
+          <button type="submit" class="btn-primary pass-submit-btn">
+            <span>Generate Free Session Pass</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+          <div class="pass-security-note">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <span>Instant cryptographic pass generated. Show on arrival at 201A Merritts Brook Lane.</span>
+          </div>
         </form>
       </div>
 
@@ -50,6 +66,7 @@ export const passView = {
     const form = root.querySelector("form.pass-form");
     const nameInput = form.querySelector("[name='name']");
     const emailInput = form.querySelector("[name='email']");
+    const phoneInput = form.querySelector("[name='phone']");
     const classSelect = form.querySelector("[name='classKey']");
     const submitBtn = form.querySelector("button[type='submit']");
     const nameError = form.querySelector("#name-error");
@@ -78,6 +95,7 @@ export const passView = {
         name: nameInput.value,
         email: emailInput.value,
         classKey: classSelect.value,
+        phone: phoneInput?.value || "",
       });
 
       if (!val.ok) {
@@ -212,7 +230,7 @@ export const passView = {
       // Pass ID
       ctx.font = "24px monospace";
       ctx.fillStyle = "#9A9BA8";
-      ctx.fillText(passId, 900, 110);
+      ctx.fillText(passId, 850, 110);
 
       // Guest Name
       ctx.font = "bold 48px sans-serif";
@@ -228,7 +246,7 @@ export const passView = {
       ctx.font = "22px sans-serif";
       ctx.fillStyle = "#CCCCCC";
       ctx.fillText("Elite Pro Fitness · 201A Merritts Brook Lane, Northfield, B31 1UH", 90, 340);
-      ctx.fillText(`Issued: ${dateStr} · England Boxing Affiliated`, 90, 380);
+      ctx.fillText(`Issued: ${dateStr} · England Boxing Affiliated · South Birmingham ABC`, 90, 380);
 
       const link = document.createElement("a");
       link.download = `EPF-guest-pass-${passId}.png`;
@@ -236,7 +254,7 @@ export const passView = {
       link.click();
     }
 
-    // Prefill listener from Hero Bar
+    // Prefill listener from Hero Bar & Timetable
     document.addEventListener("epf:prefill-pass", (e) => {
       const { classKey } = e.detail || {};
       if (classKey && classSelect) {
@@ -249,6 +267,16 @@ export const passView = {
       const coachSection = document.querySelector("#coach");
       if (coachSection) {
         coachSection.classList.add("is-open");
+      }
+    });
+
+    document.addEventListener("epf:coach-open", () => {
+      const coachSection = document.querySelector("#coach");
+      if (coachSection) {
+        coachSection.classList.add("is-open");
+      }
+      if (nameInput) {
+        nameInput.focus();
       }
     });
   },

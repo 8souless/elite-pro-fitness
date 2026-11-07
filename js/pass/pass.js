@@ -5,7 +5,7 @@
 const ALLOWED_CLASSES = new Set(["kids", "juniors", "adults", "ladies"]);
 const PASS_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
-export function validateLead({ name = "", email = "", classKey = "" } = {}) {
+export function validateLead({ name = "", email = "", classKey = "", phone = "" } = {}) {
   const errors = {};
 
   const cleanName = String(name || "").trim().replace(/\s+/g, " ");
@@ -24,6 +24,8 @@ export function validateLead({ name = "", email = "", classKey = "" } = {}) {
     errors.classKey = "Please choose a class.";
   }
 
+  const cleanPhone = String(phone || "").trim();
+
   const ok = Object.keys(errors).length === 0;
 
   return {
@@ -33,6 +35,7 @@ export function validateLead({ name = "", email = "", classKey = "" } = {}) {
       name: cleanName,
       email: cleanEmail,
       classKey: cleanClass,
+      phone: cleanPhone,
     },
   };
 }

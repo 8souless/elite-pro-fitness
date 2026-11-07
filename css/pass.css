@@ -1,36 +1,93 @@
-/* Free Session Pass & Ticket Styles */
+/* ==========================================================================
+   Free Session Pass & Interactive Ticket Generator
+   Elevated Ticket Styling with Red Punch Badge & Clean Inputs
+   ========================================================================== */
+
 #free-pass {
   position: relative;
   width: 100%;
   max-width: 580px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
+/* --- Pass Form Card --- */
 .pass-form-wrap {
-  background: rgba(18, 19, 24, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  padding: clamp(20px, 4vw, 36px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(12px);
+  position: relative;
+  background: linear-gradient(160deg, #161822 0%, #0d0e14 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 2px solid var(--ring-red);
+  border-radius: 14px;
+  padding: clamp(24px, 4vw, 36px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85),
+              0 0 35px rgba(229, 46, 46, 0.12),
+              inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  box-sizing: border-box;
+}
+
+.pass-form-wrap.is-hidden {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+}
+
+/* --- Red Punch Badge --- */
+.pass-punch-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(229, 46, 46, 0.12);
+  border: 1px solid var(--ring-red);
+  color: var(--ring-red);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 4px;
+  align-self: flex-start;
+  margin-bottom: 12px;
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ring-red);
+  box-shadow: 0 0 6px var(--ring-red);
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
 }
 
 .pass-form-title {
   font-family: var(--font-display);
-  font-size: 24px;
+  font-size: clamp(24px, 3vw, 32px);
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--ink-white);
-  margin-bottom: 6px;
+  line-height: 1.15;
+  margin: 0 0 8px 0;
 }
 
 .pass-form-sub {
-  font-size: 13px;
+  font-size: 14px;
+  line-height: 1.5;
   color: var(--ink-muted);
-  margin-bottom: 24px;
+  margin: 0 0 24px 0;
 }
 
+/* --- Clean Form Controls --- */
 .pass-form {
   display: flex;
   flex-direction: column;
@@ -45,28 +102,37 @@
 }
 
 .form-group label {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--champion-gold);
 }
 
-.form-group input, .form-group select {
-  background: #15161d;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 4px;
-  padding: 12px 14px;
+.form-group input,
+.form-group select {
+  background: #111218;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 6px;
+  padding: 13px 16px;
   color: var(--ink-white);
   font-family: var(--font-body);
   font-size: 14px;
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.form-group input:focus, .form-group select:focus {
+.form-group input:focus,
+.form-group select:focus {
   border-color: var(--ring-red);
-  box-shadow: 0 0 8px var(--ring-red-glow);
+  background: #14151e;
+  box-shadow: 0 0 12px rgba(229, 46, 46, 0.25);
+}
+
+.form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
 }
 
 .form-error {
@@ -80,32 +146,78 @@
   display: block;
 }
 
-.pass-form-wrap.is-hidden {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-  height: 0;
-  overflow: hidden;
+.pass-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px 24px;
+  background: var(--ring-red);
+  color: var(--ink-white);
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(229, 46, 46, 0.35);
+  transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+  margin-top: 8px;
 }
+
+.pass-submit-btn:hover:not(:disabled) {
+  background: #c92424;
+  box-shadow: 0 10px 28px rgba(229, 46, 46, 0.5);
+  transform: translateY(-1px);
+}
+
+.pass-submit-btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.pass-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.pass-security-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--ink-muted);
+  margin-top: 4px;
+}
+
+/* --- Elevated Ticket Display --- */
+.pass-ticket-wrap {
+  width: 100%;
+}
+
 .ticket {
   position: relative;
-  background: #111217;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(150deg, #14151e 0%, #0c0d12 100%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-left: 6px solid var(--ring-red);
-  border-radius: 8px;
-  padding: 28px 24px;
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.9);
+  border-radius: 12px;
+  padding: clamp(24px, 4vw, 32px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(229, 46, 46, 0.15);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
+  box-sizing: border-box;
 }
 
 .ticket-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
   padding-bottom: 14px;
 }
 
@@ -113,7 +225,7 @@
   font-family: var(--font-display);
   font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   color: var(--champion-gold);
   text-transform: uppercase;
 }
@@ -123,12 +235,16 @@
   font-size: 13px;
   color: var(--ink-muted);
   letter-spacing: 0.08em;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .ticket-body {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   text-align: left;
 }
 
@@ -146,20 +262,28 @@
 }
 
 .ticket-class {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--ring-red);
-  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 700;
   letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ring-red);
 }
 
 .ticket-details {
-  background: rgba(0, 0, 0, 0.35);
-  border-radius: 4px;
-  padding: 12px;
-  font-size: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 13px;
+  line-height: 1.6;
   color: var(--ink-muted);
-  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ticket-details p {
+  margin: 0;
 }
 
 .ticket-details strong {
@@ -168,8 +292,15 @@
 
 .suggested-sessions {
   margin-top: 6px;
-  padding-top: 6px;
+  padding-top: 8px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.suggested-sessions ul {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 6px 0 0 0;
+  color: var(--champion-gold);
 }
 
 .ticket-actions {
@@ -181,39 +312,39 @@
 .btn-download-pass {
   flex: 1;
   background: var(--ring-red);
-  color: #fff;
+  color: var(--ink-white);
   border: none;
-  padding: 12px;
+  border-radius: 6px;
+  padding: 14px 20px;
   font-family: var(--font-display);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  border-radius: 4px;
   cursor: pointer;
   transition: background 0.2s ease;
 }
 
 .btn-download-pass:hover {
-  background: #ff3b3b;
+  background: #c92424;
 }
 
 .btn-reset-pass {
   background: transparent;
   color: var(--ink-muted);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 12px 18px;
+  border-radius: 6px;
+  padding: 14px 18px;
   font-family: var(--font-display);
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  border-radius: 4px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .btn-reset-pass:hover {
   color: var(--ink-white);
-  border-color: rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.35);
 }
