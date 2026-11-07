@@ -36,10 +36,26 @@ nav.site-nav {
 }
 
 .brand-wrap .emblem {
-  height: 44px;
+  height: 52px;
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 0 8px rgba(229, 46, 46, 0.4));
+  transition: transform 0.25s ease, filter 0.25s ease;
+  animation: boxerPulse 4s ease-in-out infinite;
+}
+
+.brand-wrap:hover .emblem {
+  transform: scale(1.06);
+  filter: drop-shadow(0 0 18px rgba(229, 46, 46, 0.85));
+}
+
+@keyframes boxerPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(229, 46, 46, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(229, 46, 46, 0.7));
+  }
 }
 
 .brand-text {
@@ -94,10 +110,11 @@ nav.site-nav {
   display: flex;
   align-items: center;
   gap: 6px;
+  height: 48px;
 }
 
 .affiliation-badge img {
-  height: 38px;
+  height: 48px;
   width: auto;
   object-fit: contain;
 }

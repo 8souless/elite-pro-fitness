@@ -17,7 +17,12 @@ def test_sections_in_order(page, base_url):
 def test_brand_marks(page, base_url):
     page.goto(base_url + "/")
     assert page.get_attribute("nav img[alt='England Boxing affiliated club']", "src").endswith("england-boxing-logo.png")
-    assert page.eval_on_selector("nav .emblem", "e => e.getBoundingClientRect().height") >= 40
+    # Emblem should be scaled up and visible
+    emblem_height = page.eval_on_selector("nav .emblem", "e => e.getBoundingClientRect().height")
+    assert emblem_height >= 48, f"Emblem height {emblem_height} is under 48px"
+    # England boxing badge should be enlarged and prominent
+    eb_height = page.eval_on_selector(".affiliation-badge img", "e => e.getBoundingClientRect().height")
+    assert eb_height >= 44, f"England Boxing badge height {eb_height} is under 44px"
 
 @pytest.mark.parametrize("w,h", [(375, 812), (812, 375)])
 def test_mobile_cta_reachable(page, base_url, w, h):
@@ -33,4 +38,3 @@ def test_all_sections_have_3d_scroll_perspective(page, base_url):
     for i in range(sections.count()):
         sec = sections.nth(i)
         assert sec.is_visible()
-
