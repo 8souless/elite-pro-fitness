@@ -13,6 +13,8 @@
   padding: clamp(60px, 8vw, 120px) clamp(24px, 5vw, 80px);
   overflow: hidden;
   box-sizing: border-box;
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
 .zone-bg {
@@ -50,17 +52,32 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: clamp(32px, 6vw, 80px);
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .zone-content.align-right {
-  flex-direction: row-reverse;
+  justify-content: flex-end;
 }
 
 .zone .copy {
-  flex: 1;
-  max-width: 620px;
+  flex: 0 1 680px;
+  max-width: 680px;
+  background: rgba(14, 15, 20, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: clamp(28px, 4vw, 44px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transform: translateZ(24px);
+}
+
+.zone[data-zone="community"] .copy {
+  flex: 0 1 960px;
+  max-width: 960px;
 }
 
 .zone-tag {
@@ -72,6 +89,7 @@
   color: var(--champion-gold);
   text-transform: uppercase;
   margin-bottom: 16px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 /* Hollowmere Reveal: ln > span */
@@ -106,29 +124,33 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: var(--ink-white);
+  color: #FFFFFF;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
   margin-bottom: 20px;
 }
 
 .zone-desc {
   font-size: clamp(15px, 1.2vw, 18px);
   line-height: 1.6;
-  color: var(--ink-muted);
+  color: #E2E4EB;
   margin-bottom: 24px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
 }
 
 .zone-pill {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(18, 19, 24, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(18, 19, 24, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 8px 16px;
   border-radius: 4px;
   font-size: 13px;
-  font-weight: 500;
-  color: var(--ink-white);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
   backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 /* Community Giant Heading */
@@ -189,11 +211,14 @@
 @media (max-width: 860px) {
   .zone-content {
     flex-direction: column !important;
-    align-items: flex-start;
+    align-items: stretch;
+    justify-content: center !important;
   }
-  .reel {
-    width: 100%;
-    max-width: 280px;
-    margin: 20px auto 0 auto;
+  .zone .copy {
+    max-width: 100%;
+    padding: 24px 20px;
+  }
+  .zone[data-zone="community"] .copy {
+    max-width: 100%;
   }
 }

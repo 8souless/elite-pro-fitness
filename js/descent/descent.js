@@ -21,7 +21,7 @@ export const descent = {
       const bgEl = zoneEl.querySelector(".zone-bg");
       const canvasEl = zoneEl.querySelector(".zone-canvas");
       const copyEl = zoneEl.querySelector(".copy");
-      const videoEl = zoneEl.querySelector(".reel video");
+      const contentEl = zoneEl.querySelector(".zone-content");
 
       let pInst = null;
       if (canvasEl) {
@@ -35,7 +35,7 @@ export const descent = {
         bgEl,
         canvasEl,
         copyEl,
-        videoEl,
+        contentEl,
         pInst,
       };
     });
@@ -62,7 +62,7 @@ export const descent = {
         const reduced = prefersReducedMotion();
         const t = (performance.now() - startTime) * 0.001;
 
-        zoneRecords.forEach(({ zoneEl, bgEl, canvasEl, copyEl, videoEl, pInst }) => {
+        zoneRecords.forEach(({ zoneEl, bgEl, canvasEl, copyEl, contentEl, pInst }) => {
           const r = zoneEl.getBoundingClientRect();
           const inView = r.bottom >= -50 && r.top <= scroll.vh + 50;
 
@@ -85,19 +85,16 @@ export const descent = {
             }
           }
 
-          // Reel play / pause while intersecting
-          if (videoEl) {
-            const videoInView = r.top <= scroll.vh && r.bottom >= 0;
-            if (videoInView) {
-              if (videoEl.paused) {
-                videoEl.play().catch(() => {
-                  // Fallback: poster remains visible
-                });
-              }
+          // 3D perspective dynamic scroll tilt
+          if (contentEl) {
+            if (!reduced && inView) {
+              const centerY = r.top + r.height / 2;
+              const viewCenter = scroll.vh / 2;
+              const normalized = (centerY - viewCenter) / (scroll.vh / 2);
+              const tilt = Math.max(-5, Math.min(5, normalized * 3.5));
+              contentEl.style.transform = `perspective(1000px) rotateX(${tilt.toFixed(2)}deg)`;
             } else {
-              if (!videoEl.paused) {
-                videoEl.pause();
-              }
+              contentEl.style.transform = "";
             }
           }
         });
