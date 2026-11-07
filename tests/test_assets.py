@@ -1,7 +1,7 @@
 from PIL import Image
 
 def test_emblem_is_tight_and_transparent():
-    im = Image.open("assets/brand/epf-emblem.png").convert("RGBA")
+    im = Image.open("assets/brand/epf-emblem.webp").convert("RGBA")
     bbox = im.getchannel("A").point(lambda a: 255 if a > 16 else 0).getbbox()
     w, h = im.size
     assert (bbox[2] - bbox[0]) / w >= 0.90 and (bbox[3] - bbox[1]) / h >= 0.90

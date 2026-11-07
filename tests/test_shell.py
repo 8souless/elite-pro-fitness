@@ -12,7 +12,7 @@ def test_no_horizontal_overflow(page, base_url, w, h):
 def test_sections_in_order(page, base_url):
     page.goto(base_url + "/")
     ids = page.eval_on_selector_all("main > section[id]", "els => els.map(e => e.id)")
-    assert ids == ["hero", "classes", "timetable", "coach", "prices", "find-us"]
+    assert ids == ["hero", "classes", "coach", "timetable", "prices", "find-us"]
 
 def test_brand_marks(page, base_url):
     page.goto(base_url + "/")
