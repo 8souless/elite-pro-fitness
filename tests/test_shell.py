@@ -38,3 +38,29 @@ def test_all_sections_have_3d_scroll_perspective(page, base_url):
     for i in range(sections.count()):
         sec = sections.nth(i)
         assert sec.is_visible()
+
+def test_coach_responsive_layout(page, base_url):
+    # Desktop (1440px): 2-column flanking layout
+    page.set_viewport_size({"width": 1440, "height": 900})
+    page.goto(base_url + "/#coach")
+    hero_card = page.locator("#coach .coach-hero-card").bounding_box()
+    pass_box = page.locator("#coach .coach-pass-column").bounding_box()
+    assert hero_card and pass_box
+    assert pass_box["x"] > hero_card["x"], "Desktop should have 2-column side-by-side layout"
+
+    # Mobile (375px): stacked layout, full-width ticket
+    page.set_viewport_size({"width": 375, "height": 812})
+    page.goto(base_url + "/#coach")
+    hero_card_m = page.locator("#coach .coach-hero-card").bounding_box()
+    pass_box_m = page.locator("#coach .coach-pass-column").bounding_box()
+    assert hero_card_m and pass_box_m
+    assert pass_box_m["y"] > hero_card_m["y"], "Mobile should stack columns vertically"
+    assert pass_box_m["width"] <= 375, "Free pass column should fit 375px viewport"
+
+def test_coach_copyright_semantic_footer(page, base_url):
+    page.goto(base_url + "/#coach")
+    footer_el = page.locator("#coach footer.coach-copyright")
+    assert footer_el.count() == 1
+    assert footer_el.locator("small").count() == 1
+    text = footer_el.text_content()
+    assert "10452" in text

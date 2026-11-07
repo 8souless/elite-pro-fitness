@@ -29,9 +29,29 @@ def test_view_filter_and_mobile(page, base_url):
 def test_click_session_prefills_pass(page, base_url):
     page.goto(base_url + "/#timetable")
     page.click("#tue-ladies-only-boxing")
-    page.wait_for_timeout(500)
+    page.wait_for_timeout(600)
     assert page.is_visible("#free-pass form")
     assert page.input_value("#pass-class") == "ladies"
+    in_view = page.evaluate("""() => {
+        const el = document.querySelector('#free-pass');
+        const r = el.getBoundingClientRect();
+        return r.top < window.innerHeight && r.bottom > 0;
+    }""")
+    assert in_view, "#free-pass must be in view when session is clicked"
+
+def test_click_session_prefills_pass_mobile(page, base_url):
+    page.set_viewport_size({"width": 375, "height": 812})
+    page.goto(base_url + "/#timetable")
+    page.click("#tue-ladies-only-boxing")
+    page.wait_for_timeout(600)
+    assert page.is_visible("#free-pass form")
+    assert page.input_value("#pass-class") == "ladies"
+    in_view = page.evaluate("""() => {
+        const el = document.querySelector('#free-pass');
+        const r = el.getBoundingClientRect();
+        return r.top < window.innerHeight && r.bottom > 0;
+    }""")
+    assert in_view, "#free-pass must be in view on mobile when session is clicked"
 
 def test_timetable_card_has_3d_flip_structure(page, base_url):
     page.goto(base_url + "/#timetable")
@@ -49,4 +69,3 @@ def test_timetable_fits_on_viewport_without_overflow(page, base_url):
     page.goto(base_url + "/#timetable")
     scroll_width = page.evaluate("document.scrollingElement.scrollWidth")
     assert scroll_width <= 375
-
