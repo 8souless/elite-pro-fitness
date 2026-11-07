@@ -249,7 +249,11 @@ export const hero = {
         }
 
         if (dimEl) {
-          dimEl.style.opacity = String(state.dim);
+          dimEl.style.opacity = String(state.dim || 0);
+        }
+
+        if (glCanvas) {
+          glCanvas.style.opacity = String(state.emblemOpacity != null ? state.emblemOpacity : 1);
         }
 
         if (hintEl) {

@@ -39,9 +39,9 @@ export function heroState(p, opts = {}) {
   const pinOpacity = seg(a, 0.3, 0.8) * (1 - seg(normP, 0.40, 0.44));
 
   const dollyDoorOpacity = seg(normP, 0.38, 0.45) * (1 - seg(normP, 0.52, 0.58));
-  const dollyDoorScale = mix(1.0, 1.25, seg(normP, 0.38, 0.58));
+  const dollyDoorScale = mix(1.0, 1.25, io(seg(normP, 0.38, 0.58)));
   const dollyCorridorOpacity = seg(normP, 0.50, 0.57) * (1 - seg(normP, 0.64, 0.70));
-  const dollyCorridorScale = mix(1.0, 1.25, seg(normP, 0.50, 0.70));
+  const dollyCorridorScale = mix(1.0, 1.25, io(seg(normP, 0.50, 0.70)));
 
   const fog = seg(normP, 0.50, 0.58) * (1 - seg(normP, 0.66, 0.80));
 
@@ -49,7 +49,7 @@ export function heroState(p, opts = {}) {
   const ropesOpacity = 1 - seg(normP, 0.96, 1);
   const barOpacity = seg(normP, 0.76, 0.86) * (1 - seg(normP, 0.88, 0.92));
   const quoteOpacity = seg(normP, 0.89, 0.93) * (1 - seg(normP, 0.975, 1));
-  const dim = seg(normP, 0.9, 1);
+  const dim = 0;
 
   if (reduced) {
     return {

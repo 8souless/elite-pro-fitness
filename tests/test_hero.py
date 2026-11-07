@@ -13,7 +13,7 @@ def test_timeline_keyframes(page, base_url):
     assert s1["stage"] == 1 and s1["listOpacity"] == 1 and s1["fog"] == 0
     assert hs(page, 0.58)["fog"] >= 0.99
     assert s2["stage"] == 2 and s2["barOpacity"] == 1
-    assert s3["stage"] == 3 and s3["dim"] == 1 and s3["quoteOpacity"] == 0 and s3["barOpacity"] == 0
+    assert s3["stage"] == 3 and s3["dim"] == 0 and s3["quoteOpacity"] == 0 and s3["barOpacity"] == 0
 
 def test_timeline_reduced_has_no_dolly(page, base_url):
     page.goto(base_url + "/tests/blank.html")
@@ -76,4 +76,24 @@ def test_dolly_transition_keyframes(page, base_url):
     s_corridor = hs(page, 0.58)
     assert s_door["dollyDoorOpacity"] >= 0.8
     assert s_corridor["dollyCorridorOpacity"] >= 0.8
+
+def test_hero_has_no_blackout_at_exit(page, base_url):
+    page.goto(base_url + "/#hero")
+    page.evaluate("scrollTo(0, document.querySelector('#hero').offsetHeight * 0.95)")
+    page.wait_for_timeout(200)
+    # At late hero progress (p=0.95), dim overlay must be transparent or absent
+    dim_opacity = page.evaluate("""() => {
+        const dim = document.getElementById('dim');
+        return dim ? parseFloat(window.getComputedStyle(dim).opacity) : 0;
+    }""")
+    assert dim_opacity < 0.35, f"Hero dim opacity is too dark ({dim_opacity}), causing black dead zone"
+
+def test_hero_starts_with_gym_exterior(page, base_url):
+    page.goto(base_url + "/#hero")
+    bg = page.evaluate("""() => {
+        const stage = document.querySelector('.hero-stage');
+        return window.getComputedStyle(stage).backgroundImage;
+    }""")
+    assert "outside.webp" in bg or "facade-dusk.webp" in bg
+
 
