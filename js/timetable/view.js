@@ -35,7 +35,7 @@ export const timetableView = {
 
         <div class="timetable-tabs" role="tablist" aria-label="Filter timetable by category">
           ${FILTERS.map(
-            (f, idx) => `
+            (f) => `
             <button
               class="timetable-tab"
               role="tab"
@@ -52,7 +52,10 @@ export const timetableView = {
           ${Object.entries(grouped)
             .map(([dayKey, daySessions]) => `
             <div class="day-column" data-day="${dayKey}">
-              <div class="day-title">${DAY_LABELS[dayKey]}</div>
+              <div class="day-header">
+                <span class="day-title">${DAY_LABELS[dayKey]}</span>
+                <span class="day-count">${daySessions.length} classes</span>
+              </div>
               <div class="sessions-list">
                 ${daySessions
                   .map((s) => {
@@ -62,6 +65,14 @@ export const timetableView = {
                       : (s.day === "thu" && s.discipline === "ladies" ? "6:00pm" : "Ask at gym");
                     const audStr = s.audience.join(", ");
                     const filterClasses = s.filters.join(" ");
+                    const isJunior = s.discipline === "kids" ||
+                                     s.discipline === "juniors" ||
+                                     s.discipline === "dbg" ||
+                                     s.audience.includes("kids") ||
+                                     s.audience.includes("juniors") ||
+                                     s.title.toLowerCase().includes("kids") ||
+                                     s.title.toLowerCase().includes("junior");
+                    const rateBadge = isJunior ? "£5 Under 18" : "£7 Adult";
                     const classKey = s.discipline === "ladies"
                       ? "ladies"
                       : s.discipline === "kids" || s.audience.includes("kids") || s.title.toLowerCase().includes("kids")
@@ -70,21 +81,82 @@ export const timetableView = {
                       ? "juniors"
                       : "adults";
 
+                    const levelNote = s.discipline === "squad"
+                      ? "Carded boxers & squad training"
+                      : isJunior
+                      ? "Beginners to competitive juniors"
+                      : "All levels welcome · England Boxing";
+
+                    const equipmentNote = s.discipline === "weights"
+                      ? "Barbells & free weights available"
+                      : s.discipline === "run"
+                      ? "Running trainers required"
+                      : "Gloves & wraps provided";
+
                     return `
                       <div
-                        class="session"
+                        class="session session-card-wrapper"
                         id="${s.id}"
                         role="button"
                         tabindex="0"
-                        aria-label="Claim free session pass for ${s.title}"
+                        aria-label="${s.title} on ${DAY_LABELS[s.day]} at ${timeStr}. Rate: ${rateBadge}. Claim free pass."
                         data-filters="${filterClasses}"
                         data-class-key="${classKey}"
                         style="--discipline-color: ${color};"
                       >
-                        <div class="session-time">${timeStr}</div>
-                        <div class="session-title">${s.title}</div>
-                        <div class="session-audience">${audStr}</div>
-                        <span class="session-badge">Free pass eligible</span>
+                        <div class="session-card-3d">
+                          <!-- Front Face -->
+                          <div class="card-front">
+                            <div class="card-front-top">
+                              <div class="session-time-row">
+                                <span class="session-time">${timeStr}</span>
+                                <span class="session-rate-badge">${rateBadge}</span>
+                              </div>
+                              <div class="session-title">${s.title}</div>
+                              <div class="session-audience">${audStr}</div>
+                            </div>
+                            <div class="card-front-bottom">
+                              <span class="session-badge">Free pass eligible</span>
+                              <span class="flip-hint" aria-hidden="true">
+                                <span class="flip-icon">↻</span>
+                                <span>Hover / Tap</span>
+                              </span>
+                            </div>
+                          </div>
+
+                          <!-- Back Face (Rotated 180deg) -->
+                          <div class="card-back">
+                            <div class="card-back-top">
+                              <div class="card-back-meta">
+                                <span class="card-discipline-tag" style="color: ${color};">${s.discipline.toUpperCase()}</span>
+                                <span class="card-back-time">${timeStr}</span>
+                              </div>
+                              <div class="card-back-title">${s.title}</div>
+                              <div class="card-details-grid">
+                                <div class="detail-row">
+                                  <span class="detail-key">Coach:</span>
+                                  <span class="detail-val">Ian Walker</span>
+                                </div>
+                                <div class="detail-row">
+                                  <span class="detail-key">Gear:</span>
+                                  <span class="detail-val">${equipmentNote}</span>
+                                </div>
+                                <div class="detail-row">
+                                  <span class="detail-key">Level:</span>
+                                  <span class="detail-val">${levelNote}</span>
+                                </div>
+                              </div>
+                            </div>
+                            <button
+                              type="button"
+                              class="claim-pass-btn"
+                              aria-label="Claim free session pass for ${s.title}"
+                            >
+                              <span>Claim Free Session</span>
+                              <span class="btn-arrow" aria-hidden="true">→</span>
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     `;
                   })
@@ -99,6 +171,7 @@ export const timetableView = {
 
     const tabs = Array.from(root.querySelectorAll(".timetable-tab"));
     const sessionEls = Array.from(root.querySelectorAll(".session"));
+    const dayColumns = Array.from(root.querySelectorAll(".day-column"));
 
     function applyFilter(key) {
       activeFilter = key;
@@ -111,9 +184,18 @@ export const timetableView = {
       sessionEls.forEach((el) => {
         const filters = el.dataset.filters ? el.dataset.filters.split(" ") : [];
         if (key === "all" || filters.includes(key)) {
-          el.style.display = "flex";
+          el.style.display = "block";
         } else {
           el.style.display = "none";
+        }
+      });
+
+      dayColumns.forEach((col) => {
+        const visibleSessions = col.querySelectorAll(".session:not([style*='display: none'])");
+        if (key !== "all" && visibleSessions.length === 0) {
+          col.style.display = "none";
+        } else {
+          col.style.display = "flex";
         }
       });
     }
@@ -140,6 +222,9 @@ export const timetableView = {
     });
 
     sessionEls.forEach((el) => {
+      const card3d = el.querySelector(".session-card-3d");
+      const claimBtn = el.querySelector(".claim-pass-btn");
+
       const triggerPass = () => {
         const classKey = el.dataset.classKey || "adults";
         document.dispatchEvent(
@@ -156,7 +241,36 @@ export const timetableView = {
         }
       };
 
-      el.addEventListener("click", triggerPass);
+      if (claimBtn) {
+        claimBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          triggerPass();
+        });
+      }
+
+      el.addEventListener("click", (e) => {
+        const isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+        if (isTouch) {
+          if (e.target.closest(".claim-pass-btn")) {
+            triggerPass();
+          } else {
+            const wasFlipped = card3d.classList.contains("flipped");
+            root.querySelectorAll(".session-card-3d.flipped").forEach((c) => {
+              if (c !== card3d) c.classList.remove("flipped");
+            });
+            if (wasFlipped) {
+              card3d.classList.remove("flipped");
+            } else {
+              card3d.classList.add("flipped");
+            }
+          }
+          return;
+        }
+
+        // Desktop click on card triggers pass
+        triggerPass();
+      });
+
       el.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();

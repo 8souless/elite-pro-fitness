@@ -33,3 +33,20 @@ def test_click_session_prefills_pass(page, base_url):
     assert page.is_visible("#free-pass form")
     assert page.input_value("#pass-class") == "ladies"
 
+def test_timetable_card_has_3d_flip_structure(page, base_url):
+    page.goto(base_url + "/#timetable")
+    card = page.locator(".session-card-3d").first
+    assert card.is_visible()
+    # Check 3D transform preserve-3d styling
+    transform_style = page.evaluate("el => window.getComputedStyle(el).transformStyle", card.element_handle())
+    assert transform_style == "preserve-3d"
+    # Front and back faces exist
+    assert card.locator(".card-front").is_visible()
+    assert card.locator(".card-back").count() >= 1
+
+def test_timetable_fits_on_viewport_without_overflow(page, base_url):
+    page.set_viewport_size({"width": 375, "height": 812})
+    page.goto(base_url + "/#timetable")
+    scroll_width = page.evaluate("document.scrollingElement.scrollWidth")
+    assert scroll_width <= 375
+
