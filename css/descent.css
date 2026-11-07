@@ -1,0 +1,199 @@
+/* Descent Zones Styles */
+#classes {
+  position: relative;
+  width: 100%;
+}
+
+.zone {
+  position: relative;
+  min-height: 100svh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: clamp(60px, 8vw, 120px) clamp(24px, 5vw, 80px);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.zone-bg {
+  position: absolute;
+  inset: -10% 0;
+  width: 100%;
+  height: 120%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.zone-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(9, 9, 12, 0.75) 0%, rgba(9, 9, 12, 0.5) 50%, rgba(9, 9, 12, 0.85) 100%);
+}
+
+.zone-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.zone-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(32px, 6vw, 80px);
+}
+
+.zone-content.align-right {
+  flex-direction: row-reverse;
+}
+
+.zone .copy {
+  flex: 1;
+  max-width: 620px;
+}
+
+.zone-tag {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--champion-gold);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+/* Hollowmere Reveal: ln > span */
+.ln {
+  display: block;
+  overflow: hidden;
+  line-height: 1.15;
+}
+
+.ln > span {
+  display: inline-block;
+  transform: translateY(105%);
+  transition: transform 1000ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.copy[data-revealed="1"] .ln > span {
+  transform: translateY(0);
+}
+
+.copy[data-revealed="1"] .ln:nth-child(2) > span {
+  transition-delay: 80ms;
+}
+
+.copy[data-revealed="1"] .ln:nth-child(3) > span {
+  transition-delay: 160ms;
+}
+
+.zone-title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 68px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-white);
+  margin-bottom: 20px;
+}
+
+.zone-desc {
+  font-size: clamp(15px, 1.2vw, 18px);
+  line-height: 1.6;
+  color: var(--ink-muted);
+  margin-bottom: 24px;
+}
+
+.zone-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(18, 19, 24, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-white);
+  backdrop-filter: blur(8px);
+}
+
+/* Community Giant Heading */
+.community-title .line-1 {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 7vw, 120px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: 0.03em;
+  color: var(--ink-white);
+}
+
+.community-title .line-2 {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 6vw, 100px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: 0.03em;
+  color: var(--ring-red);
+}
+
+/* 9:16 Video Reel */
+.reel {
+  width: clamp(200px, 22vw, 320px);
+  aspect-ratio: 9 / 16;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  flex-shrink: 0;
+  background: #09090C;
+}
+
+.reel video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Seam Straddling Join */
+.seam {
+  position: relative;
+  width: 100%;
+  height: 0;
+  z-index: 5;
+}
+
+.seam .ropes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+@media (max-width: 860px) {
+  .zone-content {
+    flex-direction: column !important;
+    align-items: flex-start;
+  }
+  .reel {
+    width: 100%;
+    max-width: 280px;
+    margin: 20px auto 0 auto;
+  }
+}

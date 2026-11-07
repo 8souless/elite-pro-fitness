@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elite Pro Fitness | Authentic Boxing & Fitness Studio | Northfield, Birmingham</title>
+  <meta name="description" content="Authentic community boxing gym and fitness studio in Northfield, south Birmingham. Affiliated with England Boxing and home to Elite ABC. Junior, adult and ladies boxing classes.">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/descent.css">
+  <link rel="stylesheet" href="css/timetable.css">
+  <link rel="stylesheet" href="css/roster.css">
+  <link rel="stylesheet" href="css/pass.css">
+  <link rel="stylesheet" href="css/info.css">
+</head>
+<body>
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- Header Nav -->
+  <header>
+    <nav class="site-nav">
+      <a href="#hero" class="brand-wrap">
+        <img src="assets/brand/epf-emblem.webp" alt="EPF Emblem" class="emblem">
+        <div class="brand-text">
+          <span class="brand-title">Elite Pro Fitness</span>
+          <span class="brand-sub">South Birmingham</span>
+        </div>
+      </a>
+
+      <div class="nav-links">
+        <a href="#classes">Classes</a>
+        <a href="#timetable">Timetable</a>
+        <a href="#coach">Coach</a>
+        <a href="#prices">Prices</a>
+        <a href="#find-us">Find us</a>
+      </div>
+
+      <div class="nav-actions">
+        <div class="affiliation-badge">
+          <img src="assets/england-boxing-logo.png" alt="England Boxing affiliated club">
+        </div>
+        <a href="#free-pass" class="btn-primary">Claim free session</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 1. Hero Section -->
+    <section id="hero">
+      <div class="hero-stage">
+        <div id="word0" class="hero-layer">ELITE</div>
+        <div id="eyebrow">
+          <span>South Birmingham</span>
+          <span>·</span>
+          <span>England Boxing Affiliated</span>
+        </div>
+        <div id="flare"></div>
+        <canvas id="gl"></canvas>
+        <img src="assets/brand/epf-emblem.webp" alt="Elite Pro Fitness Emblem" class="emblem-fallback">
+        <div id="facade" class="hero-layer"></div>
+        <div id="dollyDoor" class="hero-layer"></div>
+        <div id="dollyCorridor" class="hero-layer"></div>
+        <div id="fore" class="hero-layer"></div>
+        <div id="pin">
+          <span>📍 201A Merritts Brook Lane · B31 1UH</span>
+        </div>
+        <div id="word1">NORTHFIELD</div>
+        <div class="programmes-wrap">
+          <ul id="programmes">
+            <li>
+              <a href="#classes" data-prog="kids" data-target="juniors">
+                <span class="prog-title">Kids Boxing</span>
+                <span class="prog-sub">Ages 5–10 · Fundamentals & Respect</span>
+              </a>
+            </li>
+            <li>
+              <a href="#classes" data-prog="juniors" data-target="juniors">
+                <span class="prog-title">Junior Boxing</span>
+                <span class="prog-sub">Ages 11–17 · Skill, Sparring & Squad</span>
+              </a>
+            </li>
+            <li>
+              <a href="#classes" data-prog="adults" data-target="adults">
+                <span class="prog-title">Adult Boxing & Fitness</span>
+                <span class="prog-sub">All levels · Padwork, conditioning, bagwork</span>
+              </a>
+            </li>
+            <li>
+              <a href="#classes" data-prog="ladies" data-target="ladies">
+                <span class="prog-title">Ladies Only Boxing</span>
+                <span class="prog-sub">Focused female coaching & conditioning</span>
+              </a>
+            </li>
+          </ul>
+          <div id="card">
+            <img src="assets/gen/prog-adults.webp" alt="Programme preview">
+          </div>
+        </div>
+        <div id="fog" class="hero-layer"></div>
+        <div id="interior" class="hero-layer"></div>
+        <div id="ringTitle">
+          <h2>The Real Work Happens In The Ring</h2>
+          <p>Northfield's Authentic Boxing Gym</p>
+        </div>
+        <div class="hero-ropes-wrap">
+          <div class="ropes"><span class="rope-mid"></span></div>
+        </div>
+        <form id="bar">
+          <select name="class" aria-label="Select training class">
+            <option value="adults">Adult Boxing & Fitness</option>
+            <option value="juniors">Junior Boxing (11-17)</option>
+            <option value="kids">Kids Boxing (5-10)</option>
+            <option value="ladies">Ladies Only Boxing</option>
+          </select>
+          <select name="day" aria-label="Select day and time">
+            <!-- Populated dynamically -->
+          </select>
+          <button type="submit" class="btn-primary">Claim Your Free Session</button>
+        </form>
+        <div id="quote">
+          “A clean, friendly, fully equipped studio · Open 12-9p Mon - Sat”
+        </div>
+        <div id="dim" class="hero-layer"></div>
+        <canvas id="dust"></canvas>
+        <div id="hint">
+          <span>Scroll to enter · 201A Merritts Brook Lane</span>
+          <div class="chevron"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Training Zones / Classes -->
+    <section id="classes">
+      <div class="seam"><div class="ropes"><span class="rope-mid"></span></div></div>
+
+      <!-- Zone: Juniors -->
+      <div class="zone" data-zone="juniors">
+        <div class="zone-bg" style="background-image: url('assets/gen/zone-juniors.webp'); background-position: 70% center;"></div>
+        <canvas class="zone-canvas"></canvas>
+        <div class="zone-content">
+          <div class="copy">
+            <span class="zone-tag">Junior Boxing · Ages 11–17 & Beginners</span>
+            <h2 class="zone-title">
+              <span class="ln"><span>Build Discipline.</span></span>
+              <span class="ln"><span>Learn The Sweet Science.</span></span>
+            </h2>
+            <p class="zone-desc">From proper hand wraps to technical footwork, our junior classes build character, fitness, and ring craft under qualified England Boxing supervision.</p>
+            <div class="zone-pill">Mon & Wed 5:30pm · Sat 9:30am · £5/session</div>
+          </div>
+          <div class="reel">
+            <video src="assets/videos/stage2-ring.mp4" muted playsinline loop preload="none" poster="assets/videos/posters/stage2.webp"></video>
+          </div>
+        </div>
+      </div>
+
+      <div class="seam"><div class="ropes"><span class="rope-mid"></span></div></div>
+
+      <!-- Zone: Ladies -->
+      <div class="zone" data-zone="ladies">
+        <div class="zone-bg" style="background-image: url('assets/gen/zone-ladies.webp'); background-position: 25% center;"></div>
+        <canvas class="zone-canvas"></canvas>
+        <div class="zone-content align-right">
+          <div class="copy">
+            <span class="zone-tag">Ladies Only Boxing & Conditioning</span>
+            <h2 class="zone-title">
+              <span class="ln"><span>Strength, Sweat & Technique.</span></span>
+              <span class="ln"><span>Zero Egos.</span></span>
+            </h2>
+            <p class="zone-desc">Dedicated women-only boxing sessions combining authentic padwork, heavy bag combinations, and functional conditioning in a focused, welcoming studio.</p>
+            <div class="zone-pill">Tue & Thu 6:00pm · Wed 12:00pm (LBT) · £7/session</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="seam"><div class="ropes"><span class="rope-mid"></span></div></div>
+
+      <!-- Zone: Adults -->
+      <div class="zone" data-zone="adults">
+        <div class="zone-bg" style="background-image: url('assets/gen/zone-adults.webp'); background-position: 75% center;"></div>
+        <canvas class="zone-canvas"></canvas>
+        <div class="zone-content">
+          <div class="copy">
+            <span class="zone-tag">Adult Boxing & Mixed Fitness</span>
+            <h2 class="zone-title">
+              <span class="ln"><span>Authentic Conditioning.</span></span>
+              <span class="ln"><span>Real Ring Craft.</span></span>
+            </h2>
+            <p class="zone-desc">Whether you want to get into the sharpest shape of your life or refine your technical arsenal, train in an authentic gym with dedicated coaching.</p>
+            <div class="zone-pill">Mon–Fri Evenings · Saturday Morning · £7/session</div>
+          </div>
+          <div class="reel">
+            <video src="assets/videos/stage0-exterior.mp4" muted playsinline loop preload="none" poster="assets/videos/posters/stage0.webp"></video>
+          </div>
+        </div>
+      </div>
+
+      <div class="seam"><div class="ropes"><span class="rope-mid"></span></div></div>
+
+      <!-- Zone: Squad -->
+      <div class="zone" data-zone="squad">
+        <div class="zone-bg" style="background-image: url('assets/gen/zone-squad.webp'); background-position: 30% center;"></div>
+        <canvas class="zone-canvas"></canvas>
+        <div class="zone-content align-right">
+          <div class="copy">
+            <span class="zone-tag">Elite ABC Competition Squad</span>
+            <h2 class="zone-title">
+              <span class="ln"><span>Cardio, Combat &</span></span>
+              <span class="ln"><span>Competition.</span></span>
+            </h2>
+            <p class="zone-desc">Home of Elite ABC. Structured sparring, competition preparation, and advanced boxing training for registered amateur boxers.</p>
+            <div class="zone-pill">Elite Squad Mon/Wed 6:30pm & Fri 5:00pm</div>
+          </div>
+          <div class="reel">
+            <video src="assets/videos/stage1-gym.mp4" muted playsinline loop preload="none" poster="assets/videos/posters/stage1.webp"></video>
+          </div>
+        </div>
+      </div>
+
+      <div class="seam"><div class="ropes"><span class="rope-mid"></span></div></div>
+
+      <!-- Zone: Community -->
+      <div class="zone" data-zone="community">
+        <div class="zone-bg" style="background-image: url('assets/gen/zone-community.webp'); background-position: 70% center;"></div>
+        <canvas class="zone-canvas"></canvas>
+        <div class="zone-content">
+          <div class="copy">
+            <span class="zone-tag">South Birmingham Community</span>
+            <div class="community-title">
+              <span class="ln"><span class="line-1">MORE THAN A GYM.</span></span>
+              <span class="ln"><span class="line-2">A NORTHFIELD INSTITUTION.</span></span>
+            </div>
+            <p class="zone-desc">A welcoming family hub at 201A Merritts Brook Lane. Run clubs, fitness, youth pathways, and community support in south Birmingham.</p>
+            <div class="zone-pill">England Boxing Affiliated · Club Reg No. 10452</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Timetable -->
+    <section id="timetable" style="min-height: 80vh;">
+      <!-- Timetable content implemented in Task 7 -->
+    </section>
+
+    <!-- 4. Coach & Free Pass -->
+    <section id="coach" style="min-height: 100vh;">
+      <div class="coach-container">
+        <!-- Coach roster implemented in Task 8 -->
+        <div id="free-pass">
+          <!-- Free pass generator implemented in Task 9 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Prices -->
+    <section id="prices">
+      <div class="prices-backdrop" aria-hidden="true"></div>
+      <div class="prices-container">
+        <div class="prices-header">
+          <span class="section-tag">Fight Card Rates</span>
+          <h2 class="section-title">Transparent Membership & Pricing</h2>
+          <div class="joining-fee-ribbon">
+            <span>Joining fee</span>
+            <strong>£15</strong>
+          </div>
+        </div>
+
+        <div class="pricing-grid">
+          <!-- Tier: Under 18yrs -->
+          <div class="price-card">
+            <h3 class="price-card-tier">Under 18yrs</h3>
+            <p class="price-card-desc">Kids, Junior Beginners, and Youth Development pathways.</p>
+            <div class="price-item">
+              <span class="price-item-label">Per session</span>
+              <span class="price-item-val">£5</span>
+            </div>
+            <div class="price-item">
+              <div>
+                <span class="price-item-label">Monthly</span>
+                <span class="price-item-period">Full access to age classes</span>
+              </div>
+              <span class="price-item-val">£30</span>
+            </div>
+            <a href="#free-pass" class="btn btn-secondary" style="margin-top: auto; text-align: center; text-decoration: none; padding: 12px; background: rgba(255,255,255,0.06); border-radius: 6px; color: #fff; font-weight: 600;">Claim Free Trial</a>
+          </div>
+
+          <!-- Tier: Over 18yrs -->
+          <div class="price-card featured">
+            <h3 class="price-card-tier">Over 18yrs</h3>
+            <p class="price-card-desc">Adult boxing, mixed fitness, ladies only & open sparring.</p>
+            <div class="price-item">
+              <span class="price-item-label">Per session</span>
+              <span class="price-item-val">£7</span>
+            </div>
+            <div class="price-item">
+              <div>
+                <span class="price-item-label">Monthly</span>
+                <span class="price-item-period">(On the 1st of every month)</span>
+              </div>
+              <span class="price-item-val">£40</span>
+            </div>
+            <a href="#free-pass" class="btn btn-primary" style="margin-top: auto; text-align: center; text-decoration: none; padding: 12px; background: var(--ring-red); border-radius: 6px; color: #fff; font-weight: 600;">Claim Free Pass</a>
+          </div>
+        </div>
+
+        <!-- Special Camp: Junior Developing Group -->
+        <div class="junior-dev-box">
+          <div class="junior-dev-content">
+            <h3>Junior Developing Group</h3>
+            <p>Junior Developing Group starting soon, to run for 10 weeks. Fee £35. Yrs 11 and up.</p>
+          </div>
+          <div class="junior-dev-price">
+            <span>£35</span>
+            <span style="font-size: 0.9rem; font-weight: normal; color: var(--ink-muted); display: block;">10-Week Course</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Find Us -->
+    <section id="find-us">
+      <div class="find-us-backdrop" aria-hidden="true"></div>
+      <div class="find-us-container">
+        <div class="find-us-grid">
+          <!-- Column 1: Location & Contact -->
+          <div class="find-us-main">
+            <div class="find-us-header">
+              <span class="section-tag">Location & Access</span>
+              <h2 class="section-title">The Northfield Gym</h2>
+              <p class="find-us-lead">A clean, friendly, fully equipped studio in south Birmingham. Complete amateur boxing ring, bags, weights, and coaching.</p>
+            </div>
+
+            <div class="contact-card">
+              <address>
+                <strong>Elite Pro Fitness</strong><br>
+                201A Merritts Brook Lane<br>
+                Northfield, Birmingham, B31 1UH
+              </address>
+
+              <div class="contact-details">
+                <div class="contact-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                  <a href="tel:+447534444063">07534 444 063</a>
+                </div>
+                <div class="contact-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                  <a href="mailto:elitepro121@gmail.com">elitepro121@gmail.com</a>
+                </div>
+              </div>
+
+              <div class="hours-card">
+                <h4>Studio Opening Hours</h4>
+                <p>Mon – Sat: 12:00 PM – 9:00 PM<br>Sunday: 9:00 AM – 2:00 PM (Run Club & Squad)</p>
+              </div>
+            </div>
+
+            <a href="https://maps.google.com/?q=201A+Merritts+Brook+Lane,+Northfield,+Birmingham+B31+1UH" target="_blank" rel="noopener noreferrer" class="directions-btn">
+              <span>Get Directions</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+          </div>
+
+          <!-- Column 2: Sponsors -->
+          <div class="sponsors-wrap">
+            <div class="sponsors-card">
+              <h3>Official Sponsors of Elite Pro Fitness</h3>
+              
+              <div class="sponsor-unit">
+                <div class="sponsor-name">Arden Estate Agents</div>
+                <div class="sponsor-meta">0121 453 4349 · 112 New Road, Rubery, B45 9HY</div>
+              </div>
+
+              <div class="sponsor-unit">
+                <div class="sponsor-name">AA Garage Doors</div>
+                <div class="sponsor-meta">Bespoke Garage Doors, Bromsgrove, Worcestershire</div>
+              </div>
+            </div>
+
+            <div class="sponsors-card" style="border-color: rgba(229,46,46,0.3); background: rgba(229,46,46,0.05);">
+              <h3 style="color: var(--ink-white); border-color: rgba(229,46,46,0.2);">Club Affiliation</h3>
+              <div style="display: flex; align-items: center; gap: 16px;">
+                <img src="assets/england-boxing-logo.png" alt="England Boxing affiliated club" style="height: 48px; width: auto;">
+                <div>
+                  <div style="font-weight: 700; color: #fff;">England Boxing Affiliated</div>
+                  <div style="font-size: 0.85rem; color: var(--ink-muted);">South Birmingham ABC · Member Club Reg 10452</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-wrap">
+      <div class="footer-marks">
+        <img src="assets/brand/epf-emblem.webp" alt="Elite Pro Fitness emblem" class="footer-emblem">
+        <img src="assets/england-boxing-logo.png" alt="England Boxing affiliated club" class="footer-badge">
+      </div>
+      <p class="footer-copy">England Boxing affiliated · © 2026 Elite Pro Fitness, Northfield, Birmingham</p>
+      <p class="footer-sub">South Birmingham ABC · Club Reg No. 10452 · Head Coach Ian Walker · 07534 444 063</p>
+    </div>
+  </footer>
+
+  <script src="assets/three.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

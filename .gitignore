@@ -1,0 +1,20 @@
+# Environment and agents
+.agents/
+.superpowers/
+.impeccable/
+.venv/
+venv/
+node_modules/
+.pytest_cache/
+test-results/
+docs/superpowers/screens/
+__pycache__/
+
+# Raw uncompressed source graphics (site uses .webp)
+assets/*.png
+assets/gen/*.png
+assets/brand/*.png
+assets/*.jpg
+
+# Unignore England Boxing badge needed by site
+!assets/england-boxing-logo.png

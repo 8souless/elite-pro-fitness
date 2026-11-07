@@ -1,0 +1,429 @@
+/* css/info.css - Section 5 (Prices), Section 6 (Find Us) & Footer */
+
+/* 5. Prices Section */
+#prices {
+  position: relative;
+  background-color: var(--bg-void);
+  padding: 100px 24px;
+  overflow: hidden;
+  border-top: 1px solid rgba(245, 166, 35, 0.15);
+}
+
+.prices-backdrop {
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/gen/texture-pricing.webp');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.prices-container {
+  position: relative;
+  max-width: 1140px;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+.prices-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.prices-header .section-tag {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--champion-gold);
+  margin-bottom: 12px;
+}
+
+.prices-header .section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink-white);
+  line-height: 1.1;
+}
+
+.joining-fee-ribbon {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 10px 24px;
+  background: rgba(245, 166, 35, 0.08);
+  border: 1px solid rgba(245, 166, 35, 0.35);
+  border-radius: 999px;
+  color: var(--champion-gold);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.joining-fee-ribbon strong {
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+  margin-bottom: 36px;
+}
+
+.price-card {
+  background: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  padding: 36px 30px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.price-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(229, 46, 46, 0.4);
+}
+
+.price-card.featured {
+  border-color: rgba(245, 166, 35, 0.4);
+  background: linear-gradient(180deg, rgba(245, 166, 35, 0.04) 0%, var(--bg-surface) 100%);
+}
+
+.price-card-tier {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--ink-white);
+  margin-bottom: 8px;
+}
+
+.price-card-desc {
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  margin-bottom: 24px;
+}
+
+.price-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.price-item:last-of-type {
+  border-bottom: none;
+  margin-bottom: 24px;
+}
+
+.price-item-label {
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+}
+
+.price-item-val {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--ink-white);
+}
+
+.price-item-period {
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  font-weight: normal;
+  display: block;
+  text-align: right;
+  margin-top: 2px;
+}
+
+/* Junior Developing Group Box */
+.junior-dev-box {
+  background: linear-gradient(135deg, rgba(229, 46, 46, 0.12) 0%, rgba(18, 19, 24, 0.9) 100%);
+  border: 1px dashed rgba(245, 166, 35, 0.5);
+  border-radius: 12px;
+  padding: 28px 32px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.junior-dev-content h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--champion-gold);
+  margin-bottom: 6px;
+}
+
+.junior-dev-content p {
+  color: var(--ink-white);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.junior-dev-price {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* 6. Find Us Section */
+#find-us {
+  position: relative;
+  background-color: var(--bg-void);
+  padding: 100px 24px;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.find-us-backdrop {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(180deg, rgba(9, 9, 12, 0.9) 0%, rgba(9, 9, 12, 0.96) 100%), url('../assets/gen/facade-dusk.webp');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.find-us-container {
+  position: relative;
+  max-width: 1140px;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+.find-us-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 48px;
+}
+
+.find-us-header .section-tag {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ring-red);
+  margin-bottom: 12px;
+}
+
+.find-us-header .section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--ink-white);
+  line-height: 1.1;
+  margin-bottom: 18px;
+}
+
+.find-us-lead {
+  font-size: 1.05rem;
+  color: var(--ink-muted);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.contact-card {
+  background: rgba(18, 19, 24, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 24px;
+}
+
+.contact-card address {
+  font-style: normal;
+  font-size: 1.1rem;
+  color: var(--ink-white);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+}
+
+.contact-item svg {
+  width: 20px;
+  height: 20px;
+  color: var(--champion-gold);
+  flex-shrink: 0;
+}
+
+.contact-item a {
+  color: var(--ink-white);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contact-item a:hover {
+  color: var(--champion-gold);
+  text-decoration: underline;
+}
+
+.hours-card {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.hours-card h4 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--champion-gold);
+  margin-bottom: 8px;
+}
+
+.hours-card p {
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+
+.directions-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: var(--ring-red);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 18px var(--ring-red-glow);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.directions-btn:hover {
+  transform: translateY(-2px);
+  background: #ff3b3b;
+}
+
+/* Sponsors column */
+.sponsors-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sponsors-card {
+  background: rgba(18, 19, 24, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 28px;
+}
+
+.sponsors-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--champion-gold);
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(245, 166, 35, 0.2);
+  padding-bottom: 10px;
+}
+
+.sponsor-unit {
+  margin-bottom: 20px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sponsor-unit:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.sponsor-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink-white);
+  margin-bottom: 4px;
+}
+
+.sponsor-meta {
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  line-height: 1.4;
+}
+
+/* Footer Styling */
+footer {
+  background: #060608;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.footer-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-marks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+
+.footer-emblem {
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(229, 46, 46, 0.3));
+}
+
+.footer-badge {
+  height: 56px;
+  width: auto;
+  object-fit: contain;
+}
+
+.footer-copy {
+  font-size: 0.95rem;
+  color: var(--ink-white);
+  line-height: 1.5;
+}
+
+.footer-sub {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+}

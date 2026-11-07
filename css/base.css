@@ -1,0 +1,226 @@
+/* Grain Overlay */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Nav */
+nav.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(16px, 3vw, 40px);
+  background: linear-gradient(to bottom, rgba(9, 9, 12, 0.92), rgba(9, 9, 12, 0.4) 75%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink-white);
+}
+
+.brand-wrap .emblem {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(229, 46, 46, 0.4));
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.brand-sub {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--champion-gold);
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2vw, 28px);
+}
+
+.nav-links a {
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--ink-white);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.affiliation-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.affiliation-badge img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background: var(--ring-red);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 3px;
+  box-shadow: 0 4px 16px var(--ring-red-glow);
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: #ff3b3b;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(229, 46, 46, 0.5);
+}
+
+/* Ropes Seam Component */
+.ropes {
+  width: 100%;
+  height: clamp(48px, 7vw, 96px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6px 0;
+  pointer-events: none;
+  position: relative;
+}
+
+.ropes::before, .ropes::after, .rope-mid {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.8);
+}
+
+.ropes::before {
+  background: repeating-linear-gradient(45deg, #c02020, #e52e2e 10px, #8b1010 10px, #8b1010 20px);
+}
+
+.rope-mid {
+  background: repeating-linear-gradient(45deg, #181920, #2c2d38 10px, #0e0f14 10px, #0e0f14 20px);
+}
+
+.ropes::after {
+  background: repeating-linear-gradient(45deg, #c02020, #e52e2e 10px, #8b1010 10px, #8b1010 20px);
+}
+
+/* Footer */
+footer {
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-surface);
+  padding: 40px 20px;
+}
+
+.footer-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.footer-wrap img {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.85;
+}
+
+.footer-wrap p {
+  color: var(--ink-muted);
+  font-size: 13px;
+}
+
+/* Sections Base */
+main {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+section[id] {
+  scroll-margin-top: 80px;
+  position: relative;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .brand-sub {
+    display: none;
+  }
+  .brand-title {
+    font-size: 15px;
+  }
+  .affiliation-badge {
+    display: none;
+  }
+  .btn-primary {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}

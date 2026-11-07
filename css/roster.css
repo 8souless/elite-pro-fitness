@@ -1,0 +1,298 @@
+/* VHS Arc Coach Roster & Flank Reveal */
+#coach {
+  position: relative;
+  min-height: 100svh;
+  width: 100%;
+  padding: clamp(60px, 8vw, 100px) clamp(16px, 4vw, 48px);
+  background: radial-gradient(circle at 50% 30%, #171821 0%, #09090C 80%);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.roster-header {
+  text-align: center;
+  margin-bottom: 24px;
+  z-index: 2;
+}
+
+.roster-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-white);
+}
+
+.roster-header p {
+  color: var(--champion-gold);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+/* 3D Shelf Stage */
+.shelf-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 1300px;
+  perspective: 1400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+  transition: transform 0.8s cubic-bezier(0.76, 0, 0.18, 1), opacity 0.8s ease;
+}
+
+.shelf {
+  position: relative;
+  width: 100%;
+  height: clamp(300px, 47vh, 480px);
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.shelf:active {
+  cursor: grabbing;
+}
+
+.tape {
+  position: absolute;
+  transform-style: preserve-3d;
+  transform-origin: 0% 50%;
+  will-change: transform, opacity;
+  border-radius: 4px;
+}
+
+.tape.is-active {
+  cursor: pointer;
+}
+
+/* Spine Face */
+.tape-spine {
+  position: absolute;
+  inset: 0;
+  background: #181920;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 4px;
+  backface-visibility: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+}
+
+.spine-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-display);
+  font-size: clamp(14px, 1.8vh, 18px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-white);
+}
+
+/* Cover Face */
+.tape-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  transform-origin: left center;
+  transform: rotateY(90deg);
+  border-radius: 3px;
+  overflow: hidden;
+  background: #101116;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9);
+  backface-visibility: hidden;
+}
+
+.tape-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Caption Block */
+.caption {
+  margin-top: 28px;
+  text-align: center;
+  min-height: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  z-index: 2;
+  transition: opacity 0.3s ease;
+}
+
+.caption .title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink-white);
+}
+
+.caption .desc {
+  font-size: 14px;
+  color: var(--ink-muted);
+  max-width: 600px;
+}
+
+.caption .coach-prompt {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--ring-red);
+  text-transform: uppercase;
+}
+
+/* Flank Reveal when .is-open */
+.flank-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(60px, 8vw, 100px) clamp(24px, 5vw, 80px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  z-index: 3;
+}
+
+#coach.is-open .shelf-wrap {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9);
+}
+
+#coach.is-open .flank-wrap {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.coach-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1300px;
+  gap: 48px;
+}
+
+.coach-photo-flank {
+  flex: 0 0 clamp(280px, 32vw, 440px);
+  height: clamp(380px, 60vh, 560px);
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+  position: relative;
+  transform: translateX(-40px);
+  transition: transform 0.9s cubic-bezier(0.76, 0, 0.18, 1);
+}
+
+#coach.is-open .coach-photo-flank {
+  transform: translateX(0);
+}
+
+.coach-photo-flank img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.coach-bio-badge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(9, 9, 12, 0.95) 0%, transparent 100%);
+}
+
+.coach-bio-badge h3 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ink-white);
+  text-transform: uppercase;
+}
+
+.coach-bio-badge p {
+  font-size: 13px;
+  color: var(--champion-gold);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.pass-container {
+  flex: 1;
+  max-width: 640px;
+  transform: translateX(40px);
+  transition: transform 0.9s cubic-bezier(0.76, 0, 0.18, 1);
+}
+
+#coach.is-open .pass-container {
+  transform: translateX(0);
+}
+
+.close-flank-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: rgba(18, 19, 24, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--ink-white);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.close-flank-btn:hover {
+  background: var(--ring-red);
+}
+
+@media (max-width: 860px) {
+  .coach-details {
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    max-height: 90vh;
+  }
+  .coach-photo-flank {
+    width: 100%;
+    max-width: 320px;
+    height: 240px;
+  }
+  .pass-container {
+    width: 100%;
+  }
+}

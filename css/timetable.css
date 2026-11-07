@@ -1,0 +1,227 @@
+/* Timetable Styles */
+#timetable {
+  position: relative;
+  width: 100%;
+  padding: clamp(60px, 8vw, 100px) clamp(16px, 4vw, 48px);
+  background: url('../assets/gen/texture-timetable.webp') center / cover no-repeat;
+  overflow: hidden;
+}
+
+#timetable::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(9, 9, 12, 0.88);
+  pointer-events: none;
+}
+
+.timetable-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.timetable-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.timetable-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-white);
+}
+
+.timetable-header p {
+  color: var(--champion-gold);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+/* Next Session Ribbon */
+.next-session-ribbon {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(229, 46, 46, 0.15);
+  border: 1px solid var(--ring-red);
+  padding: 8px 18px;
+  border-radius: 20px;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--ink-white);
+  box-shadow: 0 4px 16px var(--ring-red-glow);
+}
+
+.next-session-ribbon .pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--ring-red);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--ring-red);
+  animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Filters */
+.timetable-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+
+.timetable-tab {
+  background: rgba(18, 19, 24, 0.8);
+  color: var(--ink-muted);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.timetable-tab:hover, .timetable-tab[aria-selected="true"] {
+  background: var(--ring-red);
+  color: #fff;
+  border-color: var(--ring-red);
+  box-shadow: 0 4px 14px var(--ring-red-glow);
+}
+
+/* Timetable Grid */
+.timetable-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  width: 100%;
+}
+
+.day-column {
+  background: rgba(18, 19, 24, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.day-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-white);
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+}
+
+.sessions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.session {
+  background: #14161d;
+  border-radius: 4px;
+  padding: 10px;
+  border-left: 4px solid var(--discipline-color, var(--ring-red));
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.session:hover {
+  transform: translateY(-2px);
+  background: #1b1e27;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.session:focus-visible {
+  outline: 2px solid var(--champion-gold);
+  outline-offset: 2px;
+}
+
+.session-badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--champion-gold);
+  background: rgba(245, 166, 35, 0.08);
+  border: 1px solid rgba(245, 166, 35, 0.25);
+  border-radius: 3px;
+  padding: 2px 5px;
+  margin-top: 4px;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.session:hover .session-badge {
+  opacity: 1;
+  background: rgba(245, 166, 35, 0.16);
+  border-color: rgba(245, 166, 35, 0.5);
+}
+
+.session-time {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--discipline-color, var(--champion-gold));
+}
+
+.session-title {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--ink-white);
+  text-transform: uppercase;
+}
+
+.session-audience {
+  font-size: 10px;
+  color: var(--ink-muted);
+}
+
+/* Mobile Snapping Day Track */
+@media (max-width: 860px) {
+  .timetable-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 14px;
+    padding-bottom: 16px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .day-column {
+    flex: 0 0 85%;
+    max-width: 320px;
+    scroll-snap-align: start;
+  }
+}
