@@ -21,6 +21,11 @@
   object-position: bottom center;
   display: block;
   margin: 0 auto;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.coach-hero-card:hover .coach-portrait {
+  transform: scale(1.02);
 }
 
 .coach-figure-enter {
@@ -379,4 +384,106 @@
 .btn-reset-pass:hover {
   color: var(--ink-white);
   border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* --- Who We Are Manifesto, England Boxing Seal & Copyright --- */
+.coach-credentials-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.coach-tag-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#coach .section-tag {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--champion-gold);
+}
+
+.coach-reg-badge {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.section-eb-seal {
+  height: 52px;
+  width: auto;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+  flex-shrink: 0;
+}
+
+.coach-headline {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.8vw, 34px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ink-white);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.coach-title-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.coach-manifesto {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-white);
+}
+
+.coach-manifesto p {
+  margin: 0;
+}
+
+.coach-manifesto p:not(.coach-signoff) {
+  font-style: italic;
+  color: #e2e4ec;
+  border-left: 2px solid var(--ring-red);
+  padding-left: 14px;
+}
+
+.coach-signoff {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--champion-gold);
+  margin-top: 4px;
+}
+
+.coach-copyright {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ink-muted);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 12px;
+  margin-top: 6px;
+}
+
+@media (max-width: 899px) {
+  .coach-portrait {
+    height: clamp(340px, 55vw, 420px);
+  }
 }

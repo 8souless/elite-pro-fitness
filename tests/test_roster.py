@@ -41,3 +41,24 @@ def test_open_coach_reveals_pass(page, base_url):
     page.goto(base_url + "/#coach")
     page.wait_for_timeout(300)
     assert page.is_visible("#free-pass form")
+
+def test_who_we_are_manifesto_and_affiliation(page, base_url):
+    page.goto(base_url + "/#coach")
+    # Section should feature "Who We Are" or authentic title
+    heading = page.locator("#coach .section-title, #coach h2").first.text_content()
+    assert "who we are" in heading.lower() or "real boxing" in heading.lower() or "ian walker" in heading.lower()
+    
+    # England Boxing seal in section
+    eb_seal = page.locator("#coach .section-eb-seal")
+    assert eb_seal.is_visible()
+    
+    # First-person narrative copy
+    bio_text = page.locator("#coach .coach-bio, #coach .coach-manifesto").text_content()
+    assert "i didn't open" in bio_text.lower() or "my" in bio_text.lower()
+    assert "amateur" in bio_text.lower()
+    
+    # Official copyright and affiliation
+    copy_text = page.locator("#coach .coach-copyright").text_content()
+    assert "10452" in copy_text
+    assert "england boxing" in copy_text.lower()
+

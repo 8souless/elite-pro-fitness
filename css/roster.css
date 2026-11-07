@@ -70,18 +70,7 @@
   background: #09090c;
 }
 
-.coach-portrait {
-  display: block;
-  width: 100%;
-  height: 500px;
-  object-fit: cover;
-  object-position: center top;
-  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.coach-hero-card:hover .coach-portrait {
-  transform: scale(1.02);
-}
+/* .coach-portrait unified in css/pass.css */
 
 .coach-portrait-wrap::after {
   content: "";
@@ -217,9 +206,7 @@
     gap: 32px;
   }
 
-  .coach-portrait {
-    height: clamp(340px, 55vw, 420px);
-  }
+  /* .coach-portrait responsive handled in pass.css */
 
   .coach-stats-row {
     grid-template-columns: repeat(3, 1fr);
