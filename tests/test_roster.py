@@ -6,7 +6,10 @@ def test_coach_portrait_is_prominent_and_visible(page, base_url):
     coach_img = page.locator("#coach .coach-portrait")
     assert coach_img.is_visible()
     box = coach_img.bounding_box()
-    assert box["height"] >= 450, f"Coach portrait height ({box['height']}) is too small"
+    assert box["height"] >= 520, f"Full-figure coach height ({box['height']}) is too small"
+    # Ensure uncropped styling
+    fit = page.evaluate("el => window.getComputedStyle(el).objectFit", coach_img.element_handle())
+    assert fit == "contain"
 
 def test_free_pass_form_flanks_coach(page, base_url):
     page.set_viewport_size({"width": 1280, "height": 800})

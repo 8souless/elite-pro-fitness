@@ -254,6 +254,49 @@ export const passView = {
       link.click();
     }
 
+    // Full-figure coach scroll reveal animation
+    const coachSection = document.querySelector("#coach");
+    const figureEnterEl = coachSection ? coachSection.querySelector(".coach-figure-enter") : null;
+
+    if (figureEnterEl) {
+      const revealCoach = () => {
+        figureEnterEl.classList.add("is-visible");
+      };
+
+      if (window.location.hash === "#coach") {
+        revealCoach();
+      }
+
+      window.addEventListener("hashchange", () => {
+        if (window.location.hash === "#coach") {
+          revealCoach();
+        }
+      });
+
+      if ("IntersectionObserver" in window) {
+        try {
+          const coachObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.intersectionRatio >= 0.15 || entry.isIntersecting) {
+                  revealCoach();
+                  coachObserver.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.15 }
+          );
+          if (coachSection) {
+            coachObserver.observe(coachSection);
+          }
+        } catch (e) {
+          revealCoach();
+        }
+      } else {
+        revealCoach();
+      }
+    }
+
     // Prefill listener from Hero Bar & Timetable
     document.addEventListener("epf:prefill-pass", (e) => {
       const { classKey } = e.detail || {};

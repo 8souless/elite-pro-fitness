@@ -11,6 +11,38 @@
   box-sizing: border-box;
 }
 
+/* --- Full-Figure Coach Presentation & Scroll Reveal Animation --- */
+.coach-portrait {
+  height: 560px;
+  max-height: 70vh;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  display: block;
+  margin: 0 auto;
+}
+
+.coach-figure-enter {
+  opacity: 0;
+  transform: translateY(40px) scale(0.96);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, transform;
+}
+
+.coach-figure-enter.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coach-figure-enter {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
 /* --- Pass Form Card --- */
 .pass-form-wrap {
   position: relative;
