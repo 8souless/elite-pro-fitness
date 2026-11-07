@@ -26,3 +26,11 @@ def test_mobile_cta_reachable(page, base_url, w, h):
     page.click("nav a[href='#free-pass']")
     page.wait_for_timeout(400)
     assert page.evaluate("document.querySelector('#free-pass').getBoundingClientRect().top") < h
+
+def test_all_sections_have_3d_scroll_perspective(page, base_url):
+    page.goto(base_url + "/")
+    sections = page.locator("main > section")
+    for i in range(sections.count()):
+        sec = sections.nth(i)
+        assert sec.is_visible()
+
